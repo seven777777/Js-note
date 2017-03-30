@@ -3,7 +3,7 @@
 * [NodeIterator](https://seven777777.github.io/Js-note/12.3traverse/NodeIterator.html)
 * [TreeWalker](https://seven777777.github.io/Js-note/12.3traverse/TreeWalker.html)
 
-## 12.4 [DOM中的范围](https://seven777777.github.io/Js-note/12.3traverse/12.4.1.html)
+## 12.4 [DOM中的范围](https://seven777777.github.io/Js-note/12.4range/12.4.1.html)
 
 ----
 
