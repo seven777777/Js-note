@@ -35,6 +35,8 @@
 		* gesturechange：当触摸屏幕的任何一个手指的位置变化时触发
 		* gestureend：当任何一个手指从屏幕上移开时触发 
 ## 13.5内存和性能
+1. **[事件委托](https://seven777777.github.io/Js-note/13/13.5.1.html)**
+2. **[移除事件处理程序](https://seven777777.github.io/Js-note/13/13.5.1.html)**
 
 
 
