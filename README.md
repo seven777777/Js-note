@@ -47,3 +47,19 @@
 3. **表单字段** [**代码**](https://github.com/seven777777/Js-note/blob/gh-pages/14/14.1.3.html)/[**页面**](https://seven777777.github.io/Js-note/14/14.1.3.html)
 
 ## 14.2文本框脚本
+1. **选择文本**
+	1. select()方法和select事件
+	2. [取得选择的文本](https://seven777777.github.io/Js-note/14/14.2.1.html)[（代码）](https://github.com/seven777777/Js-note/blob/gh-pages/14/14.2.1.html)
+
+2. **过滤输入**
+3. [**自动切换焦点**](https://seven777777.github.io/Js-note/14/14.2.3.html)
+4. **HTML5约束验证API**
+	1. 必填字段：**required**属性，拥有该属性则为必填选项
+	2. 输入其他类型：HTML为input新增几个值，可以反映类型信息同时拥有默认验证功能。如："email"和"url"
+	3. 数值范围
+	4. 输入模式：**pattern**属性
+		* 如：pattern="\d+" 表示只允许输入文字
+	5. 检测有效性：**checkValidity()**方法，若字段值有效，返回true，否则返回false。
+		* 可以对表单调用该方法，若所有表单字段都有效，则返回true，即使只有一个字段无效，这个方法也会返回false。
+		* **validity**属性可以告诉你为什么字段有效或无效
+	6. 禁用验证：通过设置**novalidate**属性，可以告诉表单不进行验证

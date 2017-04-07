@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>选择文本</title>
+</head>
+<body>
+	<h3>取得选择的文本</h3>
+	<ul>
+		<li>selectionStart</li>
+		<li>selectionEnd</li>
+	</ul>
+	<form method="post" id="myForm">
+		<input type="text" size="25" maxlength="50" value="inital value" name="textbox1">
+	</form>
+	<script type="text/javascript">
+		var EventUtil={
+			addHandler:function(element,type,handler){
+				if(element.addEventListener){
+					element.addEventListener(type,handler,false);
+				}else if(element.attachEvent){
+					element.attachEvent("on"+type,handler);
+				}else{
+					element["on"+type]=null;
+				}
+			},
+			getEvent:function(event){
+				return event?event:window.event;//返回对event对象的引用
+			},
+			getTarget:function(event){
+				return event.target||event.srcElement;//返回事件目标
+			},
+			preventDefault:function(event){//取消事件的默认行为
+				if (event.preventDefault) {
+					event.preventDefault();
+				}else{
+					event.returnValue=false;
+				}
+			},
+			stopPropagation:function(event){
+				if (event.stopPropagation) {
+					event.stopPropagation();
+				}else{
+					event.cancelBubble=true;
+				}
+			}
+		};
+		var form=document.getElementById("myForm");
+		var textbox=form.elements["textbox1"];
+		/*获得焦点时，选择所有文本*/
+		EventUtil.addHandler(textbox,"focus",function(event){
+			event=EventUtil.getEvent(event);
+			var target=EventUtil.getTarget(event);
+
+			target.select();
+		});
+		/*取得用户在文本框中选择的文本*/
+		function getSelectedText(textbox){
+			// return textbox.value.substring(textbox.selectionStart,textbox.selectionEnd)
+			if (typeof textbox.selectionStart=="number") {
+				return textbox.value.substring(textbox.selectionStart,textbox.selectionEnd);
+			}else if (document.selection) {
+				return document.selection.creatRange().text;
+			}
+		}
+
+		textbox.value="Hello world!"
+		/*选择所有文本*/
+		textbox.setSelectionRange(0,textbox.value.length);//"Hello world!"
+		/*选择前三个字符*/
+		textbox.setSelectionRange(0,3);//"Hel"
+		/*选择第四个到第六个字符*/
+		textbox.setSelectionRange(4,7);//"o w"
+
+		/*跨浏览器编程*/
+		function selectText(textbox,startIndex,stopIndex){
+			if (textbox.setSelectionRange) {
+				textbox.setSelectionRange(startIndex,stopIndex);
+			}else if (textbox.creatTextRange) {
+				var range=textbox.creatTextRange();
+				range.collapse(true);
+				range.moveStart("character",startIndex);
+				range.moveEnd("character",stopIndex-startIndex);
+				range.select();
+			}
+			textbox.focus();
+		}
+
+
+
+	</script>
+</body>
+</html>
