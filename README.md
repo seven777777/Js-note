@@ -38,6 +38,12 @@
 1. **[事件委托](https://seven777777.github.io/Js-note/13/13.5.1.html)**
 2. **[移除事件处理程序](https://seven777777.github.io/Js-note/13/13.5.1.html)**
 
+## 13.6模拟事件
 
+# 第14章 表单脚本
+## [14.1表单基础知识](https://seven777777.github.io/Js-note/14/14.1.html)
+1. [**提交表单**](https://github.com/seven777777/Js-note/blob/gh-pages/14/14.1.1.js)
+2. **重置表单**
+3. **表单字段** [**代码**](https://github.com/seven777777/Js-note/blob/gh-pages/14/14.1.3.html)/[**页面**](https://seven777777.github.io/Js-note/14/14.1.3.html)
 
-
+## 14.2文本框脚本
