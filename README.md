@@ -63,3 +63,51 @@
 		* 可以对表单调用该方法，若所有表单字段都有效，则返回true，即使只有一个字段无效，这个方法也会返回false。
 		* **validity**属性可以告诉你为什么字段有效或无效
 	6. 禁用验证：通过设置**novalidate**属性，可以告诉表单不进行验证
+
+## 14.3选择框脚本
+1. 选择选项:getSelectedOptions()获得所有选中项
+2. 添加选项
+	* 创建并添加文本节点
+	* Option构造函数，接收两个参数：文本（text）和值（value），第二个参数可选；
+		* var newOption=new Option("Option text", "Option value"); selectbox**.appendChild**(newOption);（**除IE之外的浏览器都可以使用**）
+	* add():两个参数：要添加的新选项和将位于新选项之后的选项，若在列表最后添加，第二个参数设置为null。
+		* var newOption=new Option("Option text", "Option value"); selectbox**.add**(newOption, undefined);（**最佳方案**）
+3. 移除选项
+	* removeChild()
+	* remove()
+	* 将相应选项设置为null
+4. 移除和重排选项
+
+## [14.4表单序列化](https://github.com/seven777777/Js-note/blob/gh-pages/14/14.4.js)
+## [14.5富文本编辑](https://seven777777.github.io/Js-note/14/14.5-1.html)
+1. **contenteditable**属性：true打开，false关闭，inherit从父元素继承
+2. 操作富文本：document.execCommand()方法对文档执行预定义的命令，可接受三个参数：要执行的命令名称，表示浏览器是否应该为当前命令提供用户界面的一个布尔值和执行命令必须的一个值（若不需要，则传递null）为确保跨浏览器兼容性，第二个参数应始终设为false
+3. 富文本选区：使用框架（iframe）的getSelection()方法，可以确定实际选择的文本
+4. 表单与富文本
+
+# 第15章 使用Canvas绘图
+## 15.1基本用法
+1. 先设置width和height
+2. 调用**getContext()**方法并传入上下文的名字。如“2d”，就可以获得2D上下文对象
+3. **toDataURL()**方法，可以导出canvas元素上绘制的图像，接收一个参数：图像的MIME类型，如"image/png"
+
+## 15.2 2D上下文
+1. **填充和描边**：默认值都是#000000
+	1. 填充：fillStyle
+	2. 描边：strokeStyle
+2. **绘制矩形**：唯一一种可直接在2D上下文中绘制的形状
+	1. fillRect()在画布上绘制的矩形会填充指定颜色，颜色由fillStyle属性指定
+	2. strokeRect()在画布上绘制的矩形会使用指定颜色描边，颜色由strokeStyle属性指定
+		* 控制描边线条宽度:**lineWidth**，值可以是任意整数
+		* 控制线条末端形状：**lineCap**
+			* butt：平头
+			* round：圆头
+			* square：方头
+		* 控制线条相交方式：**lineJoin**
+			* round：圆交
+			* bevel：斜交
+			* miter：斜接
+	3. clearRect()清除画布上的矩形区域
+	
+	> 以上三个方法均接受四个参数，分别是：矩形的x坐标、矩形的y坐标、矩形的宽度以及矩形的高度。
+3. **绘制路径**：要绘制路径，首先必须调用**beginPath()**方法
