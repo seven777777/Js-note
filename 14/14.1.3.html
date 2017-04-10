@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>表单字段</title>
+</head>
+<body>
+	<form method="post" id="myForm">
+		<ul>
+			<li><input type="radio" name="color" value="red">Red</li>
+			<li><input type="radio" name="color" value="green">Green</li>
+			<li><input type="radio" name="color" value="blue">Blue</li>
+			<li><input type="text"></li>
+			<!-- <li><input type="text" autofocus></li> -->
+
+			<li><input type="submit" name="submit-btn" value="submit form"></li>
+		</ul>
+	</form>
+	<script type="text/javascript">
+		var EventUtil={
+			addHandler:function(element,type,handler){
+				if(element.addEventListener){
+					element.addEventListener(type,handler,false);
+				}else if(element.attachEvent){
+					element.attachEvent("on"+type,handler);
+				}else{
+					element["on"+type]=null;
+				}
+			},
+			getEvent:function(event){
+				return event?event:window.event;//返回对event对象的引用
+			},
+			getTarget:function(event){
+				return event.target||event.srcElement;//返回事件目标
+			},
+			preventDefault:function(event){//取消事件的默认行为
+				if (event.preventDefault) {
+					event.preventDefault();
+				}else{
+					event.returnValue=false;
+				}
+			},
+			stopPropagation:function(event){
+				if (event.stopPropagation) {
+					event.stopPropagation();
+				}else{
+					event.cancelBubble=true;
+				}
+			}
+		};
+		var form=document.getElementById("myForm");
+
+		//取得表单中的第一个字段
+		var field1=form.elements[0];
+
+		//取名为textbox1的字段
+		var field2=form.elements["textbox1"];
+
+		//取得表单中包含的字段的数量
+		var fieldCount=form.elements.length;
+
+		/*如果有多个相同name的控件，会返回以该name命名的一个NodeList*/
+		var colorFields=form.elements["color"];
+		// alert(colorFields.length);
+		var firstColorField=colorFields[0];
+		var firstFormField=form.elements[0];
+		// alert(firstColorField===firstFormField);
+
+		/*可以通过JS动态修改表单属性*/
+		// 修改value属性
+		field1.value="Another value";
+		//检查form属性的值
+		// alert(field1.form===form);
+		// 把焦点设置到当前字段
+		// field1.focus();
+		// 禁用当前字段
+		// field1.disabled=true;
+		// 修改type属性（不推荐，但可行）
+		// field1.type="checkbox";
+		/*第一次单击后就禁用提交按钮*/
+		// 避免多次提交表单
+		EventUtil.addHandler(form,"submit",function(event){
+			event=EventUtil.getEvent(event);
+			var target=EventUtil.getTarget(event);
+
+			// 取得提交按钮
+			var btn=target.elements["submit-btn"];
+			// 禁用
+			btn.disabled=true;
+			// 也可以禁用radio
+			var radio=target.elements["color"];
+			radio.disabled=true;
+		});
+
+		/*
+		假设文本框中只允许输入数值
+		可利用focus事件修改文本框背景颜色
+		利用blur事件恢复背景颜色
+		利用change事件在用户输入非数值时再次修改背景颜色
+		*/
+		var textbox=document.forms[0].elements[3];
+		EventUtil.addHandler(textbox,"focus",function(event){
+			event=EventUtil.getEvent(event);
+			var target=EventUtil.getTarget(event);
+			if (target.style.backgroundColor!="red") {
+				target.style.backgroundColor="yellow";
+			}else{
+				target.backgroundColor="";
+			}
+		});
+		EventUtil.addHandler(textbox,"blur",function(){
+			event=EventUtil.getEvent(event);
+			var target=EventUtil.getTarget(event);
+			if (/[^\d]/.test(target.value)) {
+				target.style.backgroundColor="red";
+			}else{
+				target.style.backgroundColor="";
+			};
+		});
+		EventUtil.addHandler(textbox,"change",function(){
+			event=EventUtil.getEvent(event);
+			var target=EventUtil.getTarget(event);
+			if (/[^\d]/.test(target.value)) {
+				target.style.backgroundColor="red";
+			}else{
+				target.style.backgroundColor="";
+			};
+		})
+
+
+	</script>
+</body>
+</html>
