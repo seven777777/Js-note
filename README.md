@@ -91,7 +91,7 @@
 2. 调用**getContext()**方法并传入上下文的名字。如“2d”，就可以获得2D上下文对象
 3. **toDataURL()**方法，可以导出canvas元素上绘制的图像，接收一个参数：图像的MIME类型，如"image/png"
 
-## 15.2 2D上下文
+## [15.2 2D上下文](https://seven777777.github.io/Js-note/15/15.2.html)
 1. **填充和描边**：默认值都是#000000
 	1. 填充：fillStyle
 	2. 描边：strokeStyle
@@ -111,3 +111,30 @@
 	
 	> 以上三个方法均接受四个参数，分别是：矩形的x坐标、矩形的y坐标、矩形的宽度以及矩形的高度。
 3. **绘制路径**：要绘制路径，首先必须调用**beginPath()**方法
+	* **arc(x,y,radius,startAngle,endAngle,countercolockwise**)
+		* 以(x,y)为圆心绘制一条弧线
+		* 弧线半径为radius
+		* startAngle,endAngle两个参数表示起始和结束角度
+		* 最后一个参数表示startAngle,endAngle是否按逆时针方向计算，false表示顺时针
+	* **arcTo(x1,y1,x2,y2,radius)**
+		* 从上一点开始绘制一条弧线，到(x2,y2)为止
+		* 以给定的半径radius穿过(x1,y1)
+	* **bezierCurveTo(c1x,c1y,c2x,c2y,x,y)**
+		* 从上一点开始，到(x,y)为止
+		* 以(c1x,c1y)和(c2x,c2y)为控制点
+	* **lineTo(x,y)**：从上一点开始绘制一条直线，到(x,y)为止
+	* **moveTo(x,y)**：将会图游标移动到(x,y)，不划线
+	* **quadraticCurveTo(cx,cy,x,y)**：从上一点开始绘制一条二次曲线，到(x,y)为止，以(cx,cy)为控制点
+	* **rect(x,y,width,height)**：从(x,y)点绘制一个矩形，宽高由width、height指定。该方法绘制的是矩形路径，并非strokeRect()和fillRect()绘制的独立的形状
+	* **isPointInPath()**：接x，y坐标作为参数，用于路径关闭前确定画布上的某一点是否位于路径上
+
+	> 1. 绘制一条连接到路径起点的线条：**closePath()**
+	> 2. 路径完成要填充：**fill()**或调用**stroke()**方法描边
+	> 3. 在路径上创建剪切区域：**clip()**
+4. **绘制文本**：fillText()、strokeText()均接受四个参数：要绘制的文本字符串，x坐标，y坐标和可选的最大像素宽度
+	* **font**：表示文本样式、大小及字体。如："10px Arial"
+	* **textAlign**：表示文本对齐方式。可能的值有："start"、"end"、"left"、"right"、"center"
+	* **textBaseline**：表示文本基线。可能的值有："top"、"hanging"、"middle"、"alphabetic"、"ideographic"、"bottom"
+	* **measureText()**：接收一个参数，即要绘制的文本，返回一个TextMrtrics对象，目前该对象值有一个width属性
+
+5. **变换**
