@@ -151,3 +151,16 @@
 	* shadowOffsetY：形状或y轴阴影偏移量
 	* shadowBlur：模糊像素数
 8. **渐变**
+	1. 线性渐变：createLinearGradient()，四个参数：起点的x坐标，起点的y坐标，终点的x坐标，终点的y坐标
+	2. 径向渐变：createRadialGradient()，六个参数：前三个为起点圆心及半径，后三个为终点圆心和半径
+9. **模式**：重复的图像，可调用createPattern()，两个参数：HTML img 元素和表示如何重复的字符串
+10. **使用图像数据**：getImageData()取得原始图像数据，四个参数：要取得数据的画面区域的x坐标和y坐标以及该区域的像素宽度和高度
+11. **合成**
+	1. globalAlpha：指定所有绘制的透明度
+	2. globalCompositionOperation：表示后绘制的图像怎样与先绘制的图形结合
+
+## 15.3 WebGL：针对Canvas的3D上下文
+1. 类型化数组
+2. WebGL上下文
+
+# 第16章 HTML5脚本编程

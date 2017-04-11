@@ -4,6 +4,9 @@ var drawing3=document.getElementById("drawing3");
 var drawing4=document.getElementById("drawing4");
 var drawing5=document.getElementById("drawing5");
 var drawing6=document.getElementById("drawing6");
+var drawing7=document.getElementById("drawing7");
+var drawing8=document.getElementById("drawing8");
+var drawing9=document.getElementById("drawing9");
 
 // 确定浏览器是否支持<canvas>元素
 if (drawing.getContext) {
@@ -145,5 +148,76 @@ if (drawing.getContext) {
 	context6.fillStyle="rgba(0,0,255,1)";
 	context6.fillRect(50,50,50,50);
 
+	/*渐变*/
+	var context7=drawing7.getContext("2d");
+	var gradient=context7.createLinearGradient(30,30,70,70);//表示从点(30,30)到(70,70)的渐变
+	gradient.addColorStop(0,"white");//起点色标是白色
+	gradient.addColorStop(1,"black");//终点色标是黑色
 
+	// 绘制红色矩形
+	context7.fillStyle="#ff0000";
+	context7.fillRect(10,10,50,50);
+
+	// 绘制渐变矩形
+	context7.fillStyle=gradient;
+	context7.fillRect(30,30,50,50);//为了覆盖整个矩形，矩形和渐变对象的坐标必须得匹配
+
+	// 使用函数确保渐变与形状对齐
+	function createRectLinearGradient(context,x,y,width,height){
+		return context.createLinearGradient(x,y,x+width,y+height);
+	}
+	var gradient2=createRectLinearGradient(context7,100,100,50,50);
+	gradient2.addColorStop(0,"white");
+	gradient2.addColorStop(1,"red");
+	context7.fillStyle=gradient2;
+	context7.fillRect(100,100,50,50);
+
+	// 创建径向渐变
+	var gradient3=context7.createRadialGradient(100,100,10,100,100,30)
+
+	gradient3.addColorStop(0,"white");
+	gradient3.addColorStop(1,"yellow");
+
+	// 绘制渐变矩形
+	context7.fillStyle=gradient3;
+	context7.fillRect(70,70,60,60)
+
+	/*模式*/
+	var context8=drawing8.getContext("2d");
+	var pattern=context8.createPattern(image,"repeat");
+
+	context8.fillStyle=pattern;
+	context8.fillRect(10,10,390,390);
+
+	/*使用图像数据*/
+	var context9=drawing9.getContext("2d");
+	var	imageData,data,
+		i,len,average,
+		red,green,blue,alpha;
+
+	// 绘制原始图像
+	context9.drawImage(image,0,0);
+
+	// 取得图像数据
+	imageData=context9.getImageData(0,0,image.width,image.height);
+	data=imageData.data;
+
+	for (var i = 0,len=data.length; i < len; i+=4) {
+		red=data[i];
+		green=data[i+1];
+		blue=data[i+2];
+		alpha=data[i+3];
+
+		// 求得rgb平均值
+		average=Math.floor((red+green+blue)/3);
+
+		// 设置颜色值，透明度不变
+		data[i]=average;
+		data[i+1]=average;
+		data[i+2]=average;
+	}
+
+	// 回写图像数据并显示结果
+	imageData.data=data;
+	context9.putImageData(imageData,0,0);
 }
