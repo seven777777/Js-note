@@ -89,7 +89,7 @@
 ## 15.1基本用法
 1. 先设置width和height
 2. 调用**getContext()**方法并传入上下文的名字。如“2d”，就可以获得2D上下文对象
-3. **toDataURL()**方法，可以导出canvas元素上绘制的图像，接收一个参数：图像的MIME类型，如"image/png"
+3. **toDataURL()**方法，可以导出canvas元素上绘制的图像，接收一个参数：图像的MIME类型，如"image/png"(**注意**：该方法是canvas对象的方法，不是上下文对象的方法）
 
 ## [15.2 2D上下文](https://seven777777.github.io/Js-note/15/15.2.html)
 1. **填充和描边**：默认值都是#000000
@@ -131,10 +131,36 @@
 	> 1. 绘制一条连接到路径起点的线条：**closePath()**
 	> 2. 路径完成要填充：**fill()**或调用**stroke()**方法描边
 	> 3. 在路径上创建剪切区域：**clip()**
-4. **绘制文本**：fillText()、strokeText()均接受四个参数：要绘制的文本字符串，x坐标，y坐标和可选的最大像素宽度
+4. **绘制文本**：fillText()、strokeText()均接受四个参数：**要绘制的文本字符串，x坐标，y坐标和可选的最大像素宽度**
 	* **font**：表示文本样式、大小及字体。如："10px Arial"
 	* **textAlign**：表示文本对齐方式。可能的值有："start"、"end"、"left"、"right"、"center"
 	* **textBaseline**：表示文本基线。可能的值有："top"、"hanging"、"middle"、"alphabetic"、"ideographic"、"bottom"
 	* **measureText()**：接收一个参数，即要绘制的文本，返回一个TextMrtrics对象，目前该对象值有一个width属性
 
 5. **变换**
+	* rotate(angle)：围绕原点旋转图像angle弧度
+	* scale(scalex,scaley)：缩放
+	* translate(x,y)：将坐标原点移动到(x,y)
+	* transform(m1_1,m1_2,m2_1,m2_2,dx,dy)：直接修改变换矩阵
+	* setTransform(m1_1,m1_2,m2_1,m2_2,dx,dy)：将矩阵重置为默认状态
+	* save()：保存绘图对上下文的设置及变换，不会保存内容
+6. **绘制图像**：drawImage()
+7. **阴影**
+	* shadowColor：阴影颜色
+	* shadowOffsetX：形状或x轴阴影偏移量
+	* shadowOffsetY：形状或y轴阴影偏移量
+	* shadowBlur：模糊像素数
+8. **渐变**
+	1. 线性渐变：createLinearGradient()，四个参数：起点的x坐标，起点的y坐标，终点的x坐标，终点的y坐标
+	2. 径向渐变：createRadialGradient()，六个参数：前三个为起点圆心及半径，后三个为终点圆心和半径
+9. **模式**：重复的图像，可调用createPattern()，两个参数：HTML img 元素和表示如何重复的字符串
+10. **使用图像数据**：getImageData()取得原始图像数据，四个参数：要取得数据的画面区域的x坐标和y坐标以及该区域的像素宽度和高度
+11. **合成**
+	1. globalAlpha：指定所有绘制的透明度
+	2. globalCompositionOperation：表示后绘制的图像怎样与先绘制的图形结合
+
+## 15.3 WebGL：针对Canvas的3D上下文
+1. 类型化数组
+2. WebGL上下文
+
+# 第16章 HTML5脚本编程
