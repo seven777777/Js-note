@@ -193,3 +193,55 @@
 
 ## 16.3媒体元素
 ### [16.3.3自定义媒体播放器](https://seven777777.github.io/Js-note/16/16.3.3.html)
+## 16.4历史状态管理
+- history.pushState()方法
+	- 通过状态管理API，能够在不加载新页面的情况下改变浏览器的URL、
+	- 接收三个参数：**状态对象，新状态标题，可选的相对URL**
+	- popstate事件，该事件的事件对象只有一个state属性，该属性包含当初以第一个参数传递给pushState()的状态对象
+- replaceState()，用来更新当前状态，前两个参数与pushState()的前两个参数相同
+
+# 第17章 错误处理与调试
+## 17.2错误处理
+### 17.2.1 try-catch语句
+
+# 第20章 JSON
+## 20.1 语法
+### 20.1.1简单值
+JavaScript字符串与JSON字符串的最大区别：JSON字符串必须使用双引号
+### 20.1.2对象
+JS中的对象字面量
+
+	var person ={
+		name:"Nicholas",
+		age:29
+	};
+或
+
+	var object={
+		"name":"Nicholas",
+		"age":29
+	};
+JSON的表示方法如下
+
+	{
+		"name":"Nicholas",
+		"age":29
+	}
+两点不同：**1.JSON对象没有声明变量 2.没有末尾的分号**
+### 20.1.3 数组
+JavaScript
+ 	
+	var values=[25,"hi",true];
+JSON（同样没有变量和分号）
+
+	[25,"hi",true]
+## 20.2解析与序列化
+### 20.2.1JSON对象
+1. stringfy()：把JavaScript对象序列化为JSON字符串（可接受参数进行筛选）
+2. parse（)：把JSON字符串解析为原生的JavaScript值
+### 20.2.2序列化选项
+1. 过滤选项
+2. 字符串缩进
+3. toJSON()：返回其自身的JSON数据格式
+
+# 第21章 Ajax与Comet
