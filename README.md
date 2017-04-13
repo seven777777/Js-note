@@ -164,3 +164,112 @@
 2. WebGL上下文
 
 # 第16章 HTML5脚本编程
+## 16.1跨文档消息传递-postMessage()
+
+## 16.2原生拖放
+### 16.2.1拖放事件
+### [16.2.2自定义放置目标](https://github.com/seven777777/Js-note/blob/gh-pages/16/16.2.2.js)
+> 通过重写**dragenter**和**dragover**事件的默认行为，可以把任何元素变成有效的放置目标
+### 16.2.3dataTransfer对象
+1. getData()
+2. setData()
+### 16.2.4dropEffect与effectAllowed
+1. dropEffect：得知被拖动的元素能够执行哪种放置行为，可能的值如下
+	+ "none"：不能把拖动元素放在这里
+	+ "move"：应该将拖动元素移动到放置区域
+	+ "copy"：应该将拖动元素复制到放置区域
+	+ "link"：放置区域会打开拖动的元素（拖动的元素必须是一个链接，有URL）
+2. effectAllowed：表示允许拖动元素的哪种dropEffect，可能的值如下
+	+ "uninitialized"：没有设置任何放置行为
+	+ "none"：被拖动元素不能有任何行为
+	+ "copy"：只允许值为"copy"的dropEffect
+	+ "link"：只允许值为"link"的dropEffect
+	+ "move"：只允许值为"move"的dropEffect
+	+ "copyLink"：只允许值为"copy"和"link"的dropEffect
+	+ "copyMove"：只允许值为"copy"和"move"的dropEffect
+	+ "linkMove"：只允许值为"link"和"move"的dropEffect
+	+ "all"：允许任意dropEffect
+### 16.2.5可拖动-draggable属性
+
+## 16.3媒体元素
+### [16.3.3自定义媒体播放器](https://seven777777.github.io/Js-note/16/16.3.3.html)
+## 16.4历史状态管理
+- history.pushState()方法
+	- 通过状态管理API，能够在不加载新页面的情况下改变浏览器的URL、
+	- 接收三个参数：**状态对象，新状态标题，可选的相对URL**
+	- popstate事件，该事件的事件对象只有一个state属性，该属性包含当初以第一个参数传递给pushState()的状态对象
+- replaceState()，用来更新当前状态，前两个参数与pushState()的前两个参数相同
+
+# 第17章 错误处理与调试
+## 17.2错误处理
+### 17.2.1 try-catch语句
+
+# 第20章 JSON
+## 20.1 语法
+### 20.1.1简单值
+JavaScript字符串与JSON字符串的最大区别：JSON字符串必须使用双引号
+### 20.1.2对象
+JS中的对象字面量
+
+	var person ={
+		name:"Nicholas",
+		age:29
+	};
+或
+
+	var object={
+		"name":"Nicholas",
+		"age":29
+	};
+JSON的表示方法如下
+
+	{
+		"name":"Nicholas",
+		"age":29
+	}
+两点不同：**1.JSON对象没有声明变量 2.没有末尾的分号**
+### 20.1.3 数组
+JavaScript
+ 	
+	var values=[25,"hi",true];
+JSON（同样没有变量和分号）
+
+	[25,"hi",true]
+## 20.2解析与序列化
+### 20.2.1JSON对象
+1. stringfy()：把JavaScript对象序列化为JSON字符串（可接受参数进行筛选）
+2. parse（)：把JSON字符串解析为原生的JavaScript值
+### 20.2.2序列化选项
+1. 过滤选项
+2. 字符串缩进
+3. toJSON()：返回其自身的JSON数据格式
+
+# 第21章 Ajax与Comet
+## 21.1 XMLHttpRequest对象
+[创建XHR对象](https://github.com/seven777777/Js-note/blob/gh-pages/21/21.1.js)
+### 21.1.1XHR的用法
+1. open()：接收三个参数
+	1. 要发送的请求类型（"get"、"post"等）
+	2. 请求的URL
+	3. 表示是否异步发送的布尔值
+
+	`xhr.open("get","example.php",false);`
+
+	open()方法并不会真正发送请求，只是启动一个请求以备发送
+
+2. send()：发动特定的请求，接受一个参数：要作为请求主体发送的数据
+
+	如果不需要通过请求主体发送数据，则必须传入null
+
+3. abort()：取消异步请求
+
+### 21.1.2 HTTP头部信息
+### 21.1.3 GET请求
+最常用于向服务器查询某些信息，可以将查询字符串参数追加到URL的末尾
+
+为了避免查询字符串的格式有问题，查询字符串中的参数名称和值必须使用`encodeURIComponent()`进行编码
+
+[构建请求URL](https://github.com/seven777777/Js-note/blob/gh-pages/21/21.1.3.js)
+
+### 21.1.4 POST请求
+通常用于向服务器发送应该被保存的数据
