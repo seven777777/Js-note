@@ -245,3 +245,31 @@ JSON（同样没有变量和分号）
 3. toJSON()：返回其自身的JSON数据格式
 
 # 第21章 Ajax与Comet
+## 21.1 XMLHttpRequest对象
+[创建XHR对象](https://github.com/seven777777/Js-note/blob/gh-pages/21/21.1.js)
+### 21.1.1XHR的用法
+1. open()：接收三个参数
+	1. 要发送的请求类型（"get"、"post"等）
+	2. 请求的URL
+	3. 表示是否异步发送的布尔值
+
+	`xhr.open("get","example.php",false);`
+
+	open()方法并不会真正发送请求，只是启动一个请求以备发送
+
+2. send()：发动特定的请求，接受一个参数：要作为请求主体发送的数据
+
+	如果不需要通过请求主体发送数据，则必须传入null
+
+3. abort()：取消异步请求
+
+### 21.1.2 HTTP头部信息
+### 21.1.3 GET请求
+最常用于向服务器查询某些信息，可以将查询字符串参数追加到URL的末尾
+
+为了避免查询字符串的格式有问题，查询字符串中的参数名称和值必须使用`encodeURIComponent()`进行编码
+
+[构建请求URL](https://github.com/seven777777/Js-note/blob/gh-pages/21/21.1.3.js)
+
+### 21.1.4 POST请求
+通常用于向服务器发送应该被保存的数据
